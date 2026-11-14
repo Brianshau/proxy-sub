@@ -67,6 +67,16 @@ jobs:
             git push
           fi
 
+      - name: Purge jsDelivr cache
+        continue-on-error: true
+        run: |
+          OWNER="${GITHUB_REPOSITORY%%/*}"
+          NAME="${GITHUB_REPOSITORY##*/}"
+          for P in sub/clash.yaml sub/nodes.csv reports/latest.md; do
+            curl -s -o /dev/null "https://purge.jsdelivr.net/gh/${OWNER}/${NAME}@main/${P}" || true
+          done
+          echo "已请求 jsDelivr 刷新缓存"
+
       - name: Summary
         if: always()
         run: |
