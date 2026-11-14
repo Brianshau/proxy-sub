@@ -64,7 +64,13 @@ jobs:
             echo "no changes"
           else
             git commit -m "chore(sub): refresh subscription $(date -u +%Y-%m-%d)"
-            git push
+            # 多个 push/dispatch 并发时，远端可能已前进；rebase 后重试
+            for i in 1 2 3; do
+              if git push; then break; fi
+              echo "push 冲突，rebase 后重试 ($i/3)"
+              git pull --rebase origin main
+              sleep 5
+            done
           fi
 
       - name: Purge jsDelivr cache
