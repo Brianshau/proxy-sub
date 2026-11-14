@@ -1,0 +1,77 @@
+name: daily-subscription
+
+on:
+  schedule:
+    # UTC 00:00 = 北京时间 08:00；GitHub 定时任务可能延迟数分钟至数十分钟
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "pipeline.py"
+      - ".github/workflows/daily.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-subscription
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq iputils-ping curl
+
+      - name: Install mihomo (linux amd64)
+        run: |
+          V=1.19.10
+          curl -sSL -o mihomo.gz \
+            "https://github.com/MetaCubeX/mihomo/releases/download/v${V}/mihomo-linux-amd64-v${V}.gz"
+          gunzip -f mihomo.gz
+          chmod +x mihomo
+          ./mihomo -v
+
+      - name: Run pipeline
+        env:
+          MIHOMO_BIN: ./mihomo
+        run: python pipeline.py --ci
+
+      - name: Commit results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sub reports
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git commit -m "chore(sub): refresh subscription $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f reports/latest.md ]; then
+            cat reports/latest.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "本轮未生成报告，请查看上方日志" >> "$GITHUB_STEP_SUMMARY"
+          fi

@@ -1,0 +1,9 @@
+raw/
+out/
+mihomo_home/
+mihomo
+mihomo.exe
+*.gz
+__pycache__/
+*.pyc
+DEPLOY_INFO.txt
