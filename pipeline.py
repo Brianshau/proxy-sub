@@ -408,7 +408,8 @@ def build_subscription(entries):
     proxies = []
     for e in entries:
         p = dict(e["proxy"])
-        p["name"] = f"{fmt_flag(e.get('countryCode'))} {e.get('country_cn')} {e['tag']}"
+        # 命名规则：文件夹名-两位序列号 + 国家/地区，如 clash.meta2-03 🇫🇷法国
+        p["name"] = f'{e["tag"]} {fmt_flag(e.get("countryCode"))}{e.get("country_cn", "")}'
         proxies.append(p)
     names = [p["name"] for p in proxies]
     return {
@@ -531,8 +532,12 @@ def main():
         r = st.get(n["key"], {})
         n["pdelay"], n["mbps"] = r.get("delay"), r.get("mbps")
 
-    for i, n in enumerate(nodes, 1):
-        n["tag"] = f"{n['type']}-{i:02d}"
+    # 命名规则：来源文件夹名 + 该文件夹内两位序列号，如 clash.meta2-03
+    counter = {}
+    for n in nodes:
+        f = n["origin"]
+        counter[f] = counter.get(f, 0) + 1
+        n["tag"] = f"{f}-{counter[f]:02d}"
 
     sub = build_subscription(nodes)
     ranked = sorted(nodes, key=lambda x: (-(x.get("mbps") or -1),
