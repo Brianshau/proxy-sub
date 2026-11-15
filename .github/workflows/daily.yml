@@ -62,23 +62,32 @@ jobs:
           git add sub reports
           if git diff --cached --quiet; then
             echo "no changes"
-          else
-            git commit -m "chore(sub): refresh subscription $(date -u +%Y-%m-%d)"
-            # 多个 push/dispatch 并发时，远端可能已前进；rebase 后重试
-            for i in 1 2 3; do
-              if git push; then break; fi
-              echo "push 冲突，rebase 后重试 ($i/3)"
-              git pull --rebase origin main
-              sleep 5
-            done
+            exit 0
           fi
+          git commit -m "chore(sub): refresh subscription $(date -u +%Y-%m-%d)"
+          # schedule / push / dispatch 撞车时远端可能已前进：先 rebase 再推
+          # 用 FETCH_HEAD 而非 origin/main，避免 fetch 未更新远端跟踪分支时 rebase 到旧提交
+          for i in 1 2 3; do
+            git fetch origin main
+            if git rebase FETCH_HEAD; then
+              if git push origin HEAD:main; then exit 0; fi
+            else
+              git rebase --abort || true
+              echo "::warning::rebase 冲突，远端已写入等价结果，本轮放弃提交"
+              exit 0
+            fi
+            echo "push 冲突，重试 ($i/3)"
+            sleep 5
+          done
+          echo "::warning::本轮结果未单独提交；若为并发运行，另一轮通常已提交等价结果"
 
       - name: Purge jsDelivr cache
+        if: always()
         continue-on-error: true
         run: |
           OWNER="${GITHUB_REPOSITORY%%/*}"
           NAME="${GITHUB_REPOSITORY##*/}"
-          for P in sub/clash.yaml sub/nodes.csv reports/latest.md; do
+          for P in sub/clash.yaml sub/nodes.csv sub/shadowrocket.txt sub/v2rayng.txt reports/latest.md; do
             curl -s -o /dev/null "https://purge.jsdelivr.net/gh/${OWNER}/${NAME}@main/${P}" || true
           done
           echo "已请求 jsDelivr 刷新缓存"
