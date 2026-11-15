@@ -1,6 +1,6 @@
 # 客户端链接版订阅 · 兼容性说明
 
-- 生成时间：2026-11-15 12:35:00 (北京时间)
+- 生成时间：2026-11-15 04:44:33
 - 源订阅：`https://cdn.jsdelivr.net/gh/Brianshau/proxy-sub@main/sub/clash.yaml`
 - 节点总数：**11**；Shadowrocket 可用 **10**；v2rayNG 可用 **1**
 

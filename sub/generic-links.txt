@@ -1,6 +1,6 @@
 # 全协议链接清单（按各协议官方/通行 URI Scheme 生成）
 # mierus:// 为实验性，未证实客户端订阅导入
-# 生成时间: 2026-11-15 12:35:00 (北京时间)
+# 生成时间: 2026-11-15 04:44:33
 
 hysteria://62.210.28.175:24667?protocol=udp&auth=dongtaiwang.com&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#clash.meta2-01%20%F0%9F%87%AB%F0%9F%87%B7%E6%B3%95%E5%9B%BD
 hysteria://163.172.117.163:36699?protocol=udp&auth=dongtaiwang.com&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#clash.meta2-02%20%F0%9F%87%AB%F0%9F%87%B7%E6%B3%95%E5%9B%BD

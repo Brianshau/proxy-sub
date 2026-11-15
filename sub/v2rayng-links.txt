@@ -1,5 +1,5 @@
 # v2rayNG 分享链接（明文）
-# 生成时间: 2026-11-15 12:35:00 (北京时间)
+# 生成时间: 2026-11-15 04:44:33
 # 源订阅: https://cdn.jsdelivr.net/gh/Brianshau/proxy-sub@main/sub/clash.yaml
 # 可用节点: 1 / 11
 
