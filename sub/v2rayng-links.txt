@@ -1,0 +1,6 @@
+# v2rayNG 分享链接（明文）
+# 生成时间: 2026-11-15 12:35:00 (北京时间)
+# 源订阅: https://cdn.jsdelivr.net/gh/Brianshau/proxy-sub@main/sub/clash.yaml
+# 可用节点: 1 / 11
+
+hysteria2://dongtaiwang.com@[2001:bc8:32d7:17b::3]:22000?peer=www.microsoft.com&sni=www.microsoft.com&insecure=1&upmbps=11&downmbps=55#hysteria2-01%20%F0%9F%87%AB%F0%9F%87%B7%E6%B3%95%E5%9B%BD

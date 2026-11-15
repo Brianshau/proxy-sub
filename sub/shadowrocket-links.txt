@@ -1,0 +1,15 @@
+# Shadowrocket 分享链接（明文）
+# 生成时间: 2026-11-15 12:35:00 (北京时间)
+# 源订阅: https://cdn.jsdelivr.net/gh/Brianshau/proxy-sub@main/sub/clash.yaml
+# 可用节点: 10 / 11
+
+hysteria://62.210.28.175:24667?protocol=udp&auth=dongtaiwang.com&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#clash.meta2-01%20%F0%9F%87%AB%F0%9F%87%B7%E6%B3%95%E5%9B%BD
+hysteria://163.172.117.163:36699?protocol=udp&auth=dongtaiwang.com&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#clash.meta2-02%20%F0%9F%87%AB%F0%9F%87%B7%E6%B3%95%E5%9B%BD
+hysteria://62.210.70.191:23556?protocol=udp&auth=github.com%2FAlvin9999-newpac%2Ffanqiang&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#clash.meta2-03%20%F0%9F%87%AB%F0%9F%87%B7%E6%B3%95%E5%9B%BD
+hysteria://[2a14:7584:d097::a]:54177?protocol=udp&auth=dongtaiwang.com&peer=apple.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#clash.meta2-04%20%F0%9F%87%A9%F0%9F%87%AA%E5%BE%B7%E5%9B%BD
+hysteria://137.175.82.44:20022?protocol=udp&auth=dongtaiwang.com&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#hysteria-01%20%F0%9F%87%BA%F0%9F%87%B8%E7%BE%8E%E5%9B%BD
+hysteria://137.175.82.44:443?protocol=udp&auth=dongtaiwang.com&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#hysteria-02%20%F0%9F%87%BA%F0%9F%87%B8%E7%BE%8E%E5%9B%BD
+hysteria://5.83.129.90:54177?protocol=udp&auth=dongtaiwang.com&peer=apple.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#hysteria-03%20%F0%9F%87%A9%F0%9F%87%AA%E5%BE%B7%E5%9B%BD
+hysteria2://dongtaiwang.com@[2001:bc8:32d7:17b::3]:22000?peer=www.microsoft.com&sni=www.microsoft.com&insecure=1&upmbps=11&downmbps=55&obfs=none#hysteria2-01%20%F0%9F%87%AB%F0%9F%87%B7%E6%B3%95%E5%9B%BD
+hysteria://198.200.57.142:22335?protocol=udp&auth=github.com%2FAlvin9999-newpac%2Ffanqiang&peer=bing.com&insecure=1&upmbps=11&downmbps=55&alpn=h3#quick-01%20%F0%9F%87%BA%F0%9F%87%B8%E7%BE%8E%E5%9B%BD
+hysteria://tw-25.497489.xyz:10099?protocol=udp&auth=github.com%2FAlvin9999-newpac%2Ffanqiang&peer=tw-25.497489.xyz&insecure=0&upmbps=20&downmbps=20&alpn=h3#quick-03%20%F0%9F%87%B9%F0%9F%87%BC%E4%B8%AD%E5%9B%BD%E5%8F%B0%E6%B9%BE

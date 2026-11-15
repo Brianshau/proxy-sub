@@ -569,6 +569,18 @@ def main():
         open(os.path.join(day, "节点清单.csv"), "w", encoding="utf-8-sig").write(csv)
         print(f"  已写入 out/")
 
+    # 同步生成分享链接版订阅（Shadowrocket / v2rayNG）
+    try:
+        import link_export
+        export_root = ROOT if ci else os.path.join(ROOT, "out")
+        r = link_export.convert(
+            sub["proxies"], export_root, meta["generated"],
+            "https://cdn.jsdelivr.net/gh/Brianshau/proxy-sub@main/sub/clash.yaml")
+        print(f"  链接版: Shadowrocket {r['shadowrocket']}/{r['total']}，"
+              f"v2rayNG {r['v2rayng']}/{r['total']}")
+    except Exception as e:  # noqa: BLE001
+        print(f"  [warn] 链接版生成失败: {e}", file=sys.stderr)
+
     alive = sum(1 for n in nodes if n.get("pdelay"))
     print(f"\n完成: {len(nodes)} 个节点，可用 {alive} 个")
     if alive == 0:
